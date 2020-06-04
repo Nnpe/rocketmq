@@ -21,7 +21,7 @@ import org.apache.rocketmq.remoting.netty.NettyServerConfig;
 import org.junit.After;
 import org.junit.Before;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class NameServerInstanceTest {
     protected NamesrvController nameSrvController = null;
@@ -43,5 +43,16 @@ public class NameServerInstanceTest {
             nameSrvController.shutdown();
         }
         //maybe need to clean the file store. But we do not suggest deleting anything.
+    }
+
+    public static void main(String[] args) throws Exception {
+        NamesrvConfig namesrvConfig = new NamesrvConfig();
+        NettyServerConfig nettyServerConfig = new NettyServerConfig();
+        nettyServerConfig.setListenPort(9876);
+
+        NamesrvController namesrvController = new NamesrvController(namesrvConfig, nettyServerConfig);
+
+        namesrvController.initialize();
+        namesrvController.start();
     }
 }
