@@ -628,7 +628,6 @@ public class DefaultMQProducerImpl implements MQProducerInner {
                                 if (sendResult != null) {
                                     return sendResult;
                                 }
-
                                 throw e;
                         }
                     } catch (InterruptedException e) {
